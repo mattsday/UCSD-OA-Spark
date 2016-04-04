@@ -7,8 +7,9 @@ public class SparkTestConnectionHandler extends PhysicalConnectivityTestHandler 
 
 	@Override
 	public PhysicalConnectivityStatus testConnection(String arg0) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		// TODO: actually do a test here
+		status.setConnectionOK(true);
+		return status;
 	}
 
 }
