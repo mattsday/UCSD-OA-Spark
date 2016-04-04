@@ -1,14 +1,11 @@
 package com.cloupia.feature.spark.accounts;
 
-import java.util.List;
-
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 
 import org.apache.log4j.Logger;
 
-import com.cloupia.fw.objstore.ObjStore;
-import com.cloupia.fw.objstore.ObjStoreHelper;
+import com.cloupia.feature.spark.constants.SparkConstants;
 import com.cloupia.lib.connector.account.AbstractInfraAccount;
 import com.cloupia.model.cIM.FormFieldDefinition;
 import com.cloupia.model.cIM.InfraAccount;
@@ -17,8 +14,7 @@ import com.cloupia.service.cIM.inframgr.forms.wizard.FormField;
 
 
 @PersistenceCapable(detachable = "true", table = "spark_account")
-public class SparkAccount extends AbstractInfraAccount implements
-		ConnectorCredential {
+public class SparkAccount extends AbstractInfraAccount implements ConnectorCredential {
 
 	static Logger logger = Logger.getLogger(SparkAccount.class);
 
@@ -27,7 +23,7 @@ public class SparkAccount extends AbstractInfraAccount implements
 	
 	@Persistent
 	@FormField(label = "Spark URL", help = "Spark URL", mandatory = true)
-	private String sparkUrl;
+	private String sparkUrl = SparkConstants.DEFAULT_SPARK_URL;
 	
 	@Persistent
 	@FormField(label = "Spark API version", help = "Spark API version", mandatory = true)
@@ -139,6 +135,13 @@ public class SparkAccount extends AbstractInfraAccount implements
 	@Override
 	public InfraAccount toInfraAccount() {
 		// TODO Auto-generated method stub
+		try {
+		
+		}
+		catch (Exception e) {
+			logger.error("Exception while mapping DeviceCredential to InfraAccount for server: "
+				+ e.getMessage());
+		}
 		return null;
 	}
 
